@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin · RSVP Juan Cruz</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&family=Inter+Tight:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --ink: #1a1a1a;
+      --ink-soft: #5a5854;
+      --accent: #8a6d3b;
+      --line: #c9c2b3;
+      --paper: #fbf8f1;
+      --green: #3d5a3a;
+      --red: #8c2a2a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter Tight', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 2.25rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .subtitle {
+      color: var(--ink-soft);
+      margin-bottom: 2.5rem;
+      font-size: 0.9rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 1.25rem 1.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.25rem;
+      color: var(--accent);
+    }
+
+    .table-wrap {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    thead {
+      background: var(--bg);
+    }
+
+    th {
+      text-align: left;
+      padding: 0.85rem 1rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      font-weight: 500;
+      border-bottom: 1px solid var(--line);
+    }
+
+    td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .badge.si {
+      background: rgba(61, 90, 58, 0.12);
+      color: var(--green);
+    }
+
+    .badge.no {
+      background: rgba(140, 42, 42, 0.12);
+      color: var(--red);
+    }
+
+    .empty {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--ink-soft);
+      font-style: italic;
+    }
+
+    .controls {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: var(--ink);
+      color: var(--bg);
+      border: none;
+      padding: 0.6rem 1rem;
+      font-family: inherit;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn:hover { background: var(--accent); }
+
+    .btn.outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .btn.outline:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .filter-active { background: var(--accent) !important; color: var(--bg) !important; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>RSVP · Juan Cruz</h1>
+    <p class="subtitle">Park Hyatt Mendoza · 30 de julio 2026</p>
+
+    <div class="stats" id="stats"></div>
+
+    <div class="controls">
+      <button class="btn outline filter-active" data-filter="all">Todos</button>
+      <button class="btn outline" data-filter="si">Vienen</button>
+      <button class="btn outline" data-filter="no">No vienen</button>
+      <button class="btn" id="exportBtn">Exportar CSV</button>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Asiste</th>
+            <th>+</th>
+            <th>Mensaje</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
+          <tr><td colspan="6" class="empty">Cargando...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+    // ⚠️ MISMOS DATOS QUE EN index.html ⚠️
+    const SUPABASE_URL = 'https://fwxhfpmrvpybykblbscu.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_-V927bJWVu7bM-H3Le8Lpg_yge6PuG1';
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let allData = [];
+    let currentFilter = 'all';
+
+    async function load() {
+      const { data, error } = await supabase
+        .from('rsvp')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        document.getElementById('tbody').innerHTML = `<tr><td colspan="6" class="empty">Error: ${error.message}</td></tr>`;
+        return;
+      }
+
+      allData = data || [];
+      render();
+    }
+
+    function render() {
+      const filtered = currentFilter === 'all'
+        ? allData
+        : allData.filter(r => r.asistencia === currentFilter);
+
+      // Stats
+      const vienen = allData.filter(r => r.asistencia === 'si');
+      const noVienen = allData.filter(r => r.asistencia === 'no');
+      const totalPersonas = vienen.reduce((s, r) => s + 1 + (r.acompanantes || 0), 0);
+
+      document.getElementById('stats').innerHTML = `
+        <div class="stat">
+          <div class="stat-label">Confirmados</div>
+          <div class="stat-value">${vienen.length}</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Total personas</div>
+          <div class="stat-value">${totalPersonas}</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">No vienen</div>
+          <div class="stat-value">${noVienen.length}</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Total respuestas</div>
+          <div class="stat-value">${allData.length}</div>
+        </div>
+      `;
+
+      // Tabla
+      const tbody = document.getElementById('tbody');
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="empty">Sin respuestas todavía</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = filtered.map((r, i) => `
+        <tr>
+          <td>${i + 1}</td>
+          <td>${escapeHtml(r.nombre)}</td>
+          <td><span class="badge ${r.asistencia}">${r.asistencia === 'si' ? 'Sí' : 'No'}</span></td>
+          <td>${r.acompanantes || 0}</td>
+          <td>${escapeHtml(r.mensaje || '—')}</td>
+          <td>${new Date(r.created_at).toLocaleString('es-AR', { dateStyle: 'short', timeStyle: 'short' })}</td>
+        </tr>
+      `).join('');
+    }
+
+    function escapeHtml(s) {
+      if (!s) return '';
+      return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    // Filtros
+    document.querySelectorAll('[data-filter]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('filter-active'));
+        btn.classList.add('filter-active');
+        currentFilter = btn.dataset.filter;
+        render();
+      });
+    });
+
+    // Exportar CSV
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      const headers = ['Nombre', 'Asiste', 'Acompañantes', 'Mensaje', 'Fecha'];
+      const rows = allData.map(r => [
+        r.nombre,
+        r.asistencia === 'si' ? 'Sí' : 'No',
+        r.acompanantes || 0,
+        r.mensaje || '',
+        new Date(r.created_at).toLocaleString('es-AR')
+      ]);
+      const csv = [headers, ...rows]
+        .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+        .join('\n');
+      const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `rsvp-juancruz-${new Date().toISOString().slice(0,10)}.csv`;
+      a.click();
+    });
+
+    load();
+    // Refresca cada 30s
+    setInterval(load, 30000);
+  </script>
+</body>
+</html>

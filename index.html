@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Juan Cruz · 29 — 30.07.2026</title>
   <meta name="description" content="Cumpleaños de Juan Cruz Rearte Zúñiga · Park Hyatt Mendoza" />
- 
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter+Tight:wght@300;400;500&display=swap" rel="stylesheet" />
- 
+
   <style>
     :root {
       --bg: #f4f1ea;
@@ -21,9 +21,9 @@
       --error: #8c2a2a;
       --success: #3d5a3a;
     }
- 
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
     html, body {
       background: var(--bg);
       color: var(--ink);
@@ -32,20 +32,20 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
- 
+
     body {
       min-height: 100vh;
       background-image:
         radial-gradient(circle at 20% 10%, rgba(138, 109, 59, 0.06) 0%, transparent 50%),
         radial-gradient(circle at 80% 90%, rgba(138, 109, 59, 0.04) 0%, transparent 50%);
     }
- 
+
     .container {
       max-width: 640px;
       margin: 0 auto;
       padding: 4rem 1.75rem 6rem;
     }
- 
+
     /* HEADER */
     .header {
       text-align: center;
@@ -54,7 +54,7 @@
       margin-bottom: 3.5rem;
       animation: fadeUp 0.9s ease-out both;
     }
- 
+
     .ornament {
       display: inline-block;
       letter-spacing: 0.4em;
@@ -63,7 +63,7 @@
       text-transform: uppercase;
       margin-bottom: 1.5rem;
     }
- 
+
     .name {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
@@ -72,7 +72,7 @@
       letter-spacing: -0.01em;
       margin-bottom: 0.75rem;
     }
- 
+
     .age {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
@@ -83,14 +83,14 @@
       margin: 1.5rem 0;
       letter-spacing: -0.02em;
     }
- 
+
     .subtitle {
       font-size: 0.85rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--ink-soft);
     }
- 
+
     /* INFO */
     .info {
       display: grid;
@@ -98,11 +98,11 @@
       margin-bottom: 4rem;
       animation: fadeUp 0.9s ease-out 0.15s both;
     }
- 
+
     .info-block {
       text-align: center;
     }
- 
+
     .info-label {
       font-size: 0.7rem;
       letter-spacing: 0.3em;
@@ -110,28 +110,28 @@
       color: var(--ink-soft);
       margin-bottom: 0.6rem;
     }
- 
+
     .info-value {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.5rem;
       font-weight: 400;
       letter-spacing: 0.01em;
     }
- 
+
     .info-value-sm {
       font-family: 'Inter Tight', sans-serif;
       font-size: 0.95rem;
       color: var(--ink-soft);
       margin-top: 0.3rem;
     }
- 
+
     .divider {
       width: 40px;
       height: 1px;
       background: var(--line);
       margin: 0 auto;
     }
- 
+
     /* RSVP */
     .rsvp {
       background: var(--paper);
@@ -139,7 +139,7 @@
       border: 1px solid var(--line);
       animation: fadeUp 0.9s ease-out 0.3s both;
     }
- 
+
     .rsvp-title {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 400;
@@ -148,18 +148,18 @@
       text-align: center;
       margin-bottom: 0.5rem;
     }
- 
+
     .rsvp-subtitle {
       text-align: center;
       font-size: 0.85rem;
       color: var(--ink-soft);
       margin-bottom: 2rem;
     }
- 
+
     .form-group {
       margin-bottom: 1.25rem;
     }
- 
+
     .form-label {
       display: block;
       font-size: 0.7rem;
@@ -168,7 +168,7 @@
       color: var(--ink-soft);
       margin-bottom: 0.5rem;
     }
- 
+
     .form-input,
     .form-select {
       width: 100%;
@@ -181,13 +181,13 @@
       color: var(--ink);
       transition: border-color 0.2s ease;
     }
- 
+
     .form-input:focus,
     .form-select:focus {
       outline: none;
       border-bottom-color: var(--accent);
     }
- 
+
     .form-select {
       appearance: none;
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%235a5854' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
@@ -195,7 +195,7 @@
       background-position: right 0 center;
       padding-right: 1.5rem;
     }
- 
+
     .submit-btn {
       width: 100%;
       margin-top: 1.5rem;
@@ -210,20 +210,20 @@
       cursor: pointer;
       transition: background 0.2s ease, transform 0.1s ease;
     }
- 
+
     .submit-btn:hover:not(:disabled) {
       background: var(--accent);
     }
- 
+
     .submit-btn:active:not(:disabled) {
       transform: scale(0.98);
     }
- 
+
     .submit-btn:disabled {
       opacity: 0.5;
       cursor: not-allowed;
     }
- 
+
     .message {
       margin-top: 1.25rem;
       padding: 0.85rem 1rem;
@@ -232,27 +232,27 @@
       border-left: 2px solid;
       display: none;
     }
- 
+
     .message.error {
       background: rgba(140, 42, 42, 0.05);
       color: var(--error);
       border-color: var(--error);
       display: block;
     }
- 
+
     .message.success {
       background: rgba(61, 90, 58, 0.05);
       color: var(--success);
       border-color: var(--success);
       display: block;
     }
- 
+
     /* CONFIRMED LIST */
     .confirmed {
       margin-top: 4rem;
       animation: fadeUp 0.9s ease-out 0.45s both;
     }
- 
+
     .confirmed-title {
       text-align: center;
       font-size: 0.7rem;
@@ -261,7 +261,7 @@
       color: var(--ink-soft);
       margin-bottom: 1.5rem;
     }
- 
+
     .confirmed-count {
       text-align: center;
       font-family: 'Cormorant Garamond', serif;
@@ -270,7 +270,7 @@
       color: var(--accent);
       margin-bottom: 2rem;
     }
- 
+
     .confirmed-list {
       list-style: none;
       columns: 2;
@@ -278,38 +278,38 @@
       font-size: 0.95rem;
       color: var(--ink-soft);
     }
- 
+
     .confirmed-list li {
       padding: 0.4rem 0;
       break-inside: avoid;
     }
- 
+
     @media (max-width: 480px) {
       .confirmed-list { columns: 1; }
     }
- 
+
     /* THANK YOU STATE */
     .thank-you {
       display: none;
       text-align: center;
       padding: 2rem 0;
     }
- 
+
     .thank-you.active { display: block; }
     .form-wrapper.hidden { display: none; }
- 
+
     .thank-you-title {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-size: 2rem;
       margin-bottom: 0.75rem;
     }
- 
+
     .thank-you-text {
       color: var(--ink-soft);
       font-size: 0.95rem;
     }
- 
+
     /* FOOTER */
     .footer {
       text-align: center;
@@ -320,7 +320,7 @@
       color: var(--ink-soft);
       opacity: 0.6;
     }
- 
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
@@ -329,15 +329,15 @@
 </head>
 <body>
   <main class="container">
- 
+
     <!-- HEADER -->
     <header class="header">
-      <div class="ornament">— Te invitamos —</div>
+      <div class="ornament">— Te invito —</div>
       <h1 class="name">Juan Cruz<br>Rearte Zúñiga</h1>
       <div class="age">29</div>
       <div class="subtitle">A celebrar juntos</div>
     </header>
- 
+
     <!-- INFO DEL EVENTO -->
     <section class="info">
       <div class="info-block">
@@ -345,42 +345,42 @@
         <div class="info-value">Jueves 30 de Julio</div>
         <div class="info-value-sm">2026</div>
       </div>
- 
+
       <div class="divider"></div>
- 
+
       <div class="info-block">
         <div class="info-label">Hora</div>
         <div class="info-value">20:30 hs</div>
       </div>
- 
+
       <div class="divider"></div>
- 
+
       <div class="info-block">
         <div class="info-label">Lugar</div>
         <div class="info-value">Park Hyatt Mendoza</div>
         <div class="info-value-sm">Av. Chile 1124, Mendoza</div>
       </div>
- 
+
       <div class="divider"></div>
- 
+
       <div class="info-block">
         <div class="info-label">Dress Code</div>
         <div class="info-value">Casual / Elegante</div>
       </div>
     </section>
- 
+
     <!-- RSVP FORM -->
     <section class="rsvp">
       <div class="form-wrapper" id="formWrapper">
         <h2 class="rsvp-title">Confirmá tu asistencia</h2>
         <p class="rsvp-subtitle">Tu presencia es el mejor regalo</p>
- 
+
         <form id="rsvpForm">
           <div class="form-group">
             <label class="form-label" for="nombre">Nombre y apellido</label>
             <input type="text" id="nombre" class="form-input" required autocomplete="name" />
           </div>
- 
+
           <div class="form-group">
             <label class="form-label" for="asistencia">¿Vas a venir?</label>
             <select id="asistencia" class="form-select" required>
@@ -389,51 +389,44 @@
               <option value="no">No podré asistir</option>
             </select>
           </div>
- 
+
           <div class="form-group">
             <label class="form-label" for="mensaje">Mensaje (opcional)</label>
             <input type="text" id="mensaje" class="form-input" maxlength="200" placeholder="Un saludo para Juan Cruz..." />
           </div>
- 
+
           <button type="submit" class="submit-btn" id="submitBtn">Confirmar</button>
           <div class="message" id="message"></div>
         </form>
       </div>
- 
+
       <div class="thank-you" id="thankYou">
         <div class="ornament">— Gracias —</div>
         <h2 class="thank-you-title" id="thankYouTitle">Confirmación recibida</h2>
         <p class="thank-you-text" id="thankYouText">Nos vemos el 30 de julio.</p>
       </div>
     </section>
- 
-    <!-- LISTA DE CONFIRMADOS -->
-    <section class="confirmed" id="confirmedSection">
-      <div class="confirmed-title">— Confirmados —</div>
-      <div class="confirmed-count" id="confirmedCount">Cargando...</div>
-      <ul class="confirmed-list" id="confirmedList"></ul>
-    </section>
- 
+
     <footer class="footer">JC · 29 · MMXXVI</footer>
- 
+
   </main>
- 
+
   <!-- SUPABASE -->
   <script type="module">
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
- 
+
     const SUPABASE_URL = 'https://fwxhfpmrvpybykblbscu.supabase.co';
     const SUPABASE_ANON_KEY = 'sb_publishable_-V927bJWVu7bM-H3Le8Lpg_yge6PuG1';
- 
+
     const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
- 
+
     // Pre-rellenar nombre desde la URL (?invitado=Juan+Perez)
     const params = new URLSearchParams(window.location.search);
     const invitadoUrl = params.get('invitado');
     if (invitadoUrl) {
       document.getElementById('nombre').value = invitadoUrl;
     }
- 
+
     // Form submit
     const form = document.getElementById('rsvpForm');
     const message = document.getElementById('message');
@@ -442,18 +435,18 @@
     const thankYou = document.getElementById('thankYou');
     const thankYouTitle = document.getElementById('thankYouTitle');
     const thankYouText = document.getElementById('thankYouText');
- 
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       message.className = 'message';
       message.textContent = '';
       submitBtn.disabled = true;
       submitBtn.textContent = 'Enviando...';
- 
+
       const nombre = document.getElementById('nombre').value.trim();
       const asistencia = document.getElementById('asistencia').value;
       const mensaje = document.getElementById('mensaje').value.trim();
- 
+
       if (!nombre || !asistencia) {
         message.className = 'message error';
         message.textContent = 'Por favor completá los campos requeridos.';
@@ -461,11 +454,11 @@
         submitBtn.textContent = 'Confirmar';
         return;
       }
- 
+
       const { error } = await supabase
         .from('rsvp')
         .insert([{ nombre, asistencia, acompanantes: 0, mensaje }]);
- 
+
       if (error) {
         message.className = 'message error';
         message.textContent = 'Hubo un problema. Intentá de nuevo en un momento.';
@@ -474,7 +467,7 @@
         console.error(error);
         return;
       }
- 
+
       // Mostrar thank you
       formWrapper.classList.add('hidden');
       thankYou.classList.add('active');
@@ -485,41 +478,7 @@
         thankYouTitle.textContent = 'Te vamos a extrañar';
         thankYouText.textContent = 'Gracias por avisar. Hasta la próxima.';
       }
- 
-      cargarConfirmados();
     });
- 
-    // Cargar lista de confirmados
-    async function cargarConfirmados() {
-      const { data, error } = await supabase
-        .from('rsvp')
-        .select('nombre')
-        .eq('asistencia', 'si')
-        .order('created_at', { ascending: true });
- 
-      if (error) {
-        document.getElementById('confirmedCount').textContent = '—';
-        return;
-      }
- 
-      const list = document.getElementById('confirmedList');
-      const count = document.getElementById('confirmedCount');
- 
-      list.innerHTML = '';
- 
-      if (data.length === 0) {
-        count.textContent = 'Sé el primero en confirmar';
-      } else {
-        count.textContent = `${data.length} ${data.length === 1 ? 'persona confirmada' : 'personas confirmadas'}`;
-        data.forEach(r => {
-          const li = document.createElement('li');
-          li.textContent = r.nombre;
-          list.appendChild(li);
-        });
-      }
-    }
- 
-    cargarConfirmados();
   </script>
 </body>
 </html>
